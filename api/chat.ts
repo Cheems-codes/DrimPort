@@ -8,7 +8,7 @@ type VercelRequest = IncomingMessage & { body?: unknown };
 
 type JsonResponse = Record<string, unknown>;
 
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
 const MAX_MESSAGE_LENGTH = 4_000;
 const MAX_HISTORY_ITEMS = 12;
 const MAX_HISTORY_MESSAGE_LENGTH = 2_000;

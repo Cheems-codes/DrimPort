@@ -14,7 +14,7 @@ const MAX_HISTORY_ITEMS = 12;
 const MAX_HISTORY_MESSAGE_LENGTH = 2_000;
 
 const SYSTEM_INSTRUCTION = `You are the portfolio assistant for Josh Raven R. Velasco.
-Answer questions about Josh's background, services, certificates, skills, and contact details using only the context below. Be concise, friendly, and professional. If a question is unrelated or the answer is not in the context, say that you do not have that information and suggest contacting Josh directly.
+Answer questions about Josh's background, services, certificates, skills, and contact details using only the context below. Be concise, friendly, and professional. When asked about certificates or recognitions, include the complete list of all five items from the context. Always finish complete sentences and list items; never stop mid-word, mid-year, or mid-sentence. If a question is unrelated or the answer is not in the context, say that you do not have that information and suggest contacting Josh directly.
 
 Portfolio context:
 - Josh Raven R. Velasco is an Information Technology student based in Manila, Philippines.
@@ -136,7 +136,7 @@ export default async function handler(req: VercelRequest, res: ServerResponse): 
           body: JSON.stringify({
             systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
             contents: makeContents(message, cleanHistory(body.history)),
-            generationConfig: { temperature: 0.4, maxOutputTokens: 500 },
+            generationConfig: { temperature: 0.25, maxOutputTokens: 900 },
           }),
           signal: controller.signal,
         },

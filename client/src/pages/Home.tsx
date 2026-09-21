@@ -30,7 +30,7 @@ import {
   X,
 } from "lucide-react";
 
-const profilePhoto = "/assets/IMG_3967.HEIC";
+const profilePhoto = "/assets/IMG_3967.jpg";
 const resumeFile = "/manus-storage/josh-velasco_be67e71f.jpg";
 
 const navItems = [

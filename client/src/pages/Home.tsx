@@ -30,7 +30,7 @@ import {
   X,
 } from "lucide-react";
 
-const profilePhoto = "/assets/IMG_3967.jpg";
+const profilePhoto = "/assets/IMG_3967.HEIC";
 const resumeFile = "/manus-storage/josh-velasco_be67e71f.jpg";
 
 const navItems = [
@@ -76,6 +76,10 @@ const certificates = [
 ];
 
 type ChatMessage = { role: "user" | "model"; content: string };
+
+function cleanChatText(content: string): string {
+  return content.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/^\s*[-*]\s+/gm, "• ");
+}
 
 function SectionHeading({ eyebrow, title, copy }: { eyebrow: string; title: string; copy?: string }) {
   return (
@@ -261,7 +265,7 @@ export default function Home() {
           <div className="hero-orbit orbit-two" aria-hidden="true" />
           <div className="hero-copy">
             <p className="eyebrow reveal"><span className="status-dot" /> Available for opportunities</p>
-            <h1 className="reveal reveal-delay-1">Maangas gumawa ng<br /><em>wibsayt.</em></h1>
+            <h1 className="reveal reveal-delay-1">Building digital<br /><em>possibilities.</em></h1>
             <p className="hero-intro reveal reveal-delay-2">I’m Josh Raven R. Velasco — an IT student and creative technologist turning curious ideas into useful, human-centered experiences.</p>
             <div className="hero-actions reveal reveal-delay-3">
               <a className="button button-primary" href="#services">Explore services <ArrowDownRight size={17} /></a>
@@ -336,7 +340,7 @@ export default function Home() {
       {chatOpen && <section className="chat-panel" aria-label="Portfolio AI assistant">
         <div className="chat-panel-header"><div><span className="chat-status"><span /> ONLINE</span><h2>Ask the assistant</h2></div><button className="chat-close" type="button" aria-label="Close AI assistant" onClick={() => setChatOpen(false)}><X size={18} /></button></div>
         <div className="chat-messages" aria-live="polite">
-          {chatMessages.map((message, index) => <div className={`chat-message ${message.role}`} key={`${message.role}-${index}`}><span>{message.content}</span></div>)}
+          {chatMessages.map((message, index) => <div className={`chat-message ${message.role}`} key={`${message.role}-${index}`}><span>{cleanChatText(message.content)}</span></div>)}
           {chatLoading && <div className="chat-message model"><span className="chat-typing"><i /><i /><i /></span></div>}
         </div>
         {chatError && <p className="chat-error">{chatError}</p>}
